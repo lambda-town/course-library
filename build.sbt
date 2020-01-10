@@ -17,8 +17,9 @@ lazy val root = (project in file("."))
     name := "course-library",
     githubOwner := "lambdacademy-dev",
     libraryDependencies ++= Seq(
-      "lambda" %% "course-dsl" % "0.1.0",
+      "lambda" %% "course-dsl" % "0.2.1",
       "org.scalatest" %% "scalatest" % "3.0.8" % Test
-    )
+    ),
+    scalacOptions ~= { _.filterNot(Set("-Xlint:missing-interpolator")) }
   )
 

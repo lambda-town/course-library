@@ -1,19 +1,13 @@
 package lambda.library
 
-import lambda.domain.courses.Page.SimplePage
-import lambda.domain.courses.Page.PageId
 import lambda.domain.courses.Course
-import lambda.domain.courses.Course.CourseId
-import Utils._
-import lambda.domain.Media
-import cats.Monad
-import cats.implicits._
 import lambda.dsl.courses._
 
 object ATourOfScala {
 
   private val title: String = "A tour of Scala"
   private val id: String = slug(title)
+
 
   val intro = (simplePage("What is Scala ?")
     withWidget mk(
