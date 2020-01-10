@@ -3,7 +3,6 @@ package lambda.library
 import org.scalatest._
 import lambda.domain.courses.MultipleChoices
 import cats.effect.IO
-import lambda.domain.courses.Widget
 
 class LibrarySpec extends FunSpec with Matchers {
 
