@@ -1,7 +1,7 @@
 import sbtghpackages.TokenSource.Environment
 
 ThisBuild / scalaVersion := "2.12.10"
-ThisBuild / version := "0.1.0"
+ThisBuild / version := "0.1.1"
 ThisBuild / organization := "lambda"
 ThisBuild / organizationName := "Lambdacademy"
 
@@ -17,7 +17,7 @@ lazy val root = (project in file("."))
     name := "course-library",
     githubOwner := "lambdacademy-dev",
     libraryDependencies ++= Seq(
-      "lambda" %% "course-dsl" % "0.2.1",
+      "lambda" %% "course-dsl" % "0.2.2",
       "org.scalatest" %% "scalatest" % "3.0.8" % Test
     ),
     scalacOptions ~= { _.filterNot(Set("-Xlint:missing-interpolator")) }
