@@ -8,7 +8,6 @@ object ATourOfScala {
   private val title: String = "A tour of Scala"
   private val id: String = slug(title)
 
-
   val intro = (simplePage("What is Scala ?")
     withWidget mk(
       widgetId(id, 0),
@@ -72,20 +71,23 @@ object ATourOfScala {
       |
       |Can you guess what this code does ?""".stripMargin
     )
-    withWidget (
+    withWidget(
       scala(widgetId(id, 3))
-        withBaseFile sourceFileResource("/a-tour-of-scala/1-intro/code-template-1.ssp")
-        withDefaultValue (
-          """case class User(name: String, age: Int)
+        .withBaseFile(sourceFileResource(
+          "/a-tour-of-scala/1-intro/code-template-1.ssp"
+        ))
+        .withDefaultValue(
+          """
+        |case class User(name: String, age: Int)
         |
-        |    def greetUser(user: User) = user match {
-        |      case User("Jane", _) => println("Hi there, Jane")
-        |      case User("Bob", _) => println("Nice to see you Bob!")
-        |      case User(name, age) => println(s"Hey there $name, $age is a great age to learn Scala!")
-        |    }
-        |  
-        |    greetUser(User("Jane", 28))""".stripMargin
-        )
+        |def greetUser(user: User) = user match {
+        |  case User("Jane", _) => println("Hi there, Jane")
+        |  case User("Bob", _) => println("Nice to see you Bob!")
+        |  case User(name, age) => println(s"Hey there $name, $age is a great age to learn Scala!")
+        |}
+        |
+        |greetUser(User("Jane", 28))""".stripMargin
+        ).wrapInMain
     )
     withWidget mk(
       widgetId(id, 4),
@@ -119,7 +121,7 @@ object ATourOfScala {
     )
     withWidget (
       scala(widgetId(id, 5))
-        withDefaultValue (
+        .withDefaultValue (
           """abstract class Character {
             |  val name: String
             |}
@@ -142,7 +144,7 @@ object ATourOfScala {
             |
             |player.castSpell()
             |player.sneakBehind(npc)""".stripMargin
-        )
+        ).wrapInMain
     )
     withWidget mk(
       widgetId(id, 6),
