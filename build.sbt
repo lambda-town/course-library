@@ -2,7 +2,7 @@ import org.apache.commons.io.FileUtils
 import sbtghpackages.TokenSource.Environment
 
 ThisBuild / scalaVersion := "2.12.10"
-ThisBuild / version := "0.1.5"
+ThisBuild / version := "0.1.6"
 ThisBuild / organization := "lambda"
 ThisBuild / organizationName := "Lambdacademy"
 
@@ -40,7 +40,7 @@ ThisBuild / bundleExamples := {
   val resources = resourceDirectory.in(root).in(Compile).value
 
   val examplesFolders = List(
-    scalaSource.in(scalaCodeExamples).in(Compile).value / "lambda" / "examples"
+    scalaSource.in(scalaCodeExamples).in(Compile).value / "lambda"
   )
   FileUtils.deleteQuietly(resources / "examples")
   examplesFolders.foreach(f => {
