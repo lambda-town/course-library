@@ -3,6 +3,9 @@ package lambda.library
 import org.scalatest._
 import lambda.domain.courses.MultipleChoices
 import cats.effect.IO
+import lambda.domain.code.SourceFile
+import lambda.domain.courses.InteractiveCodeWidget.{SimpleScala2CodeWidget, TabbedScala2CodeWidget}
+
 
 class LibrarySpec extends FunSpec with Matchers {
 
@@ -28,6 +31,19 @@ class LibrarySpec extends FunSpec with Matchers {
             })
         )
         .unsafeRunSync()
+    }
+
+    it("Should have valid resources for all code widgets") {
+      widgets.flatMap({
+        case w: SimpleScala2CodeWidget => w.baseFiles
+        case w: TabbedScala2CodeWidget => w.baseFiles
+        case _ => Nil
+      }).collect({
+        case f: SourceFile.ClasspathResource => f
+      }).foreach(f => {
+        println(s"Reading ${f.name}")
+        getClass.getResourceAsStream(f.name)
+      })
     }
   }
 }

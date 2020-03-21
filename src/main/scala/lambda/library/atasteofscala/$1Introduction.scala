@@ -1,26 +1,20 @@
-package lambda.library
+package lambda.library.atasteofscala
 
-import lambda.domain.courses.Course
-import lambda.dsl.courses._
+object $1Introduction {
+  
+  val pageId = s"$id-introduction"
 
-object ATourOfScala {
-
-  private val title: String = "A tour of Scala"
-  private val id: String = slug(title)
-
-  val intro = (simplePage("What is Scala ?")
+  def apply() = (simplePage("What is Scala ?")
     withWidget mk(
-      widgetId(id, 0),
-      """Scala is a modern, multi-paradigm programming language designed to express common programming patterns in a concise, elegant, and type-safe way. It smoothly integrates features of object-oriented and functional languages.
+      widgetId(pageId, 0),
+      """Scala is a modern, multi-paradigm programming language designed to express common programming patterns in a concise,
+      |elegant, and type-safe way. It smoothly integrates features of object-oriented and functional languages.
       |
       |Scala was created by Martin Odersky at the [EPFL](https://www.epfl.ch/en/), in Switzerland. The first release of Scala is from 2003.
       |The language has since then successfully been used by major tech companies such as Twitter, and as the primary language of
-      |widely-used open-source projects such as [Apache Spark](https://spark.apache.org/). Scala can be used for heavy 
-      |data processing, machine learning, web services and more. It has been steadily gaining popularity in the IT industry, 
-      |and is probably the most popular functional programming language today.
-      |It's also worth noticing that while Scala jobs can still be arguably hard to find, Scala jobs are among the five
-      |best paying programming languages worldwide, along with three other functional programming: F#, Clojure and Elixir.
-      |[Source: Stackoverflow Survey 2019](https://insights.stackoverflow.com/survey/2019). It's clear that functional programming skills are sought for and valued.
+      |widely-used open-source projects such as [Apache Spark](https://spark.apache.org/). Scala can be used for heavy
+      |data processing, machine learning, web services and more. It has been steadily gaining popularity in the IT industry,
+      |and is probably the most popular functional programming language in use today.
       |
       |### Why should I learn Scala ?
       |
@@ -39,7 +33,7 @@ object ATourOfScala {
       |""".stripMargin
     )
     withWidget multipleChoices(
-      widgetId(id, 1),
+      widgetId(pageId, 1),
       "What is Scala ?",
       "A general-purpose, functional and object oriented programming language with a strong type system",
       "The name of a very famous boys band from the 90s",
@@ -47,7 +41,7 @@ object ATourOfScala {
       "The new game of Peter Molyneux"
     )
     withWidget mk(
-      widgetId(id, 2),
+      widgetId(pageId, 2),
       """#### What's in this course ?
       |
       |This first course covers the basics of the language. It should be a first step for people that have some programming
@@ -56,7 +50,7 @@ object ATourOfScala {
       |### Scala is expressive and statically typed
       |
       |In Scala, every value has a well-defined type. The correctness of Scala programs is
-      |enforced at compile time. Scala's type system allows using powerful abstractions in safe and coherent manner. 
+      |enforced at compile time. Scala's type system allows using powerful abstractions in safe and coherent manner.
       |
       |Scala supports traits, generics, inner classes, type bounds and many other features that allow developers
       |to model their business model with precision and write complex programs with confidence. Many deadly
@@ -71,36 +65,23 @@ object ATourOfScala {
       |
       |Can you guess what this code does ?""".stripMargin
     )
-    withWidget(
-      scala(widgetId(id, 3))
-        .withBaseFile(sourceFileResource(
-          "/a-tour-of-scala/1-intro/code-template-1.ssp"
-        ))
-        .withDefaultValue(
-          """
-        |case class User(name: String, age: Int)
-        |
-        |def greetUser(user: User) = user match {
-        |  case User("Jane", _) => println("Hi there, Jane")
-        |  case User("Bob", _) => println("Nice to see you Bob!")
-        |  case User(name, age) => println(s"Hey there $name, $age is a great age to learn Scala!")
-        |}
-        |
-        |greetUser(User("Jane", 28))""".stripMargin
-        ).wrapInMain
-    )
+    withWidget (
+      scala(widgetId(pageId, 3))
+        .withBaseFile(sourceFileResource("/examples/atasteofscala/intro/PatternMatching.scala"))
+        .withDefaultValue(textFromResource("/examples/atasteofscala/intro/patternMatchingValue.sc"))
+      )
     withWidget mk(
-      widgetId(id, 4),
+      widgetId(pageId, 4),
       """Try to modify the last line to get different results. Put "Bob" in place of Jane, or put your own
       |name and age!
       |
       |### Scala is functional
       |
       |Scala is a functional language in the sense that functions are first-class citizens. Scala's functions
-      |can be passed around, nested, curried and partially applied. We'll get into the details of what these mean. 
+      |can be passed around, nested, curried and partially applied. We'll get into the details of what these mean.
       |Scala has a lightweight syntax for anonymous functions. Functions that aren't members of a class can be grouped
       |in singleton objects, similar to the concept of module in other languages. This means you don't even have to write
-      |object-oriented code. Scala supports both purely functional programming, object-oriented patterns, or both depending 
+      |object-oriented code. Scala supports both purely functional programming, object-oriented patterns, or both depending
       |on the problem at hand.
       |
       |Functional programming is a programming *paradigm*, a way of reasoning about software under a different angle than what
@@ -120,34 +101,12 @@ object ATourOfScala {
       |""".stripMargin
     )
     withWidget (
-      scala(widgetId(id, 5))
-        .withDefaultValue (
-          """abstract class Character {
-            |  val name: String
-            |}
-            |
-            |trait Magic {
-            |  def castSpell() = println("Woosh!")
-            |}
-            |
-            |trait Stealth {
-            |  def sneakBehind(target: Character) = println(s"You've stolen ${target.name}'s purse!")
-            |}
-            |
-            |class Wizard(val name: String) extends Character with Magic
-            |
-            |// Wizard AND Thief, because why not ?
-            |class WizardThief(val name: String) extends Character with Stealth with Magic
-            |
-            |val player = new WizardThief("Olugorim The Great")
-            |val npc = new Wizard("Ezor The Fierce")
-            |
-            |player.castSpell()
-            |player.sneakBehind(npc)""".stripMargin
-        ).wrapInMain
+      scala(widgetId(pageId, 5))
+        .withDefaultValue(textFromResource("/examples/atasteofscala/intro/classValue.sc"))
+        .wrapInMain
     )
     withWidget mk(
-      widgetId(id, 6),
+      widgetId(pageId, 6),
       """
       |### Scala interoperates
       |
@@ -156,18 +115,4 @@ object ATourOfScala {
       |has, meaning if something exists in Java's standard library, you can just use it.
       |""".stripMargin
     ))
-
-  def apply(): Course =
-    (course(title)
-      withDescription (
-        """
-        |Scala is a modern, expressive, statically typed programming language that is both functional and object oriented.
-        |This course is aimed at people who already have some experience of programming and would like to learn the basics
-        |of functional programming in Scala.
-        |
-        """.stripMargin.trim
-      )
-      withImage mediaResource("/public/a-tour-of-scala.png")
-      withPage intro)
-
 }
