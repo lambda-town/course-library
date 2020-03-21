@@ -2,7 +2,7 @@ import org.apache.commons.io.FileUtils
 import sbtghpackages.TokenSource.Environment
 
 ThisBuild / scalaVersion := "2.12.10"
-ThisBuild / version := "0.1.4"
+ThisBuild / version := "0.1.5"
 ThisBuild / organization := "lambda"
 ThisBuild / organizationName := "Lambdacademy"
 
@@ -27,7 +27,7 @@ lazy val root = (project in file("."))
 lazy val scalaCodeExamples = (project in file("scala-code-examples"))
   .settings(
     libraryDependencies ++= Seq(
-      "lambda" %% "scala-utils" % "0.2.2",
+      "lambda" %% "scala-utils" % "0.2.3",
       "org.scalatest" %% "scalatest" % "3.0.8" % Test
     )
   )
