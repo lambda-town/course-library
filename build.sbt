@@ -2,7 +2,7 @@ import org.apache.commons.io.FileUtils
 import sbtghpackages.TokenSource.Environment
 
 ThisBuild / scalaVersion := "2.12.10"
-ThisBuild / version := "0.1.3"
+ThisBuild / version := "0.1.4"
 ThisBuild / organization := "lambda"
 ThisBuild / organizationName := "Lambdacademy"
 
@@ -37,14 +37,14 @@ lazy val bundleExamples = TaskKey[Unit]("bundleExamples", "Copies examples in th
 ThisBuild / bundleExamples := {
 
   val log = streams.value.log
-  val dest = resourceDirectory.in(root).in(Compile).value
+  val resources = resourceDirectory.in(root).in(Compile).value
 
   val examplesFolders = List(
-    scalaSource.in(scalaCodeExamples).in(Compile).value / "lambda"
+    scalaSource.in(scalaCodeExamples).in(Compile).value / "lambda" / "examples"
   )
-  FileUtils.deleteQuietly(dest)
+  FileUtils.deleteQuietly(resources / "examples")
   examplesFolders.foreach(f => {
-    FileUtils.copyDirectory(f, dest)
-    log.info(s"Copied $f to $dest")
+    FileUtils.copyDirectory(f, resources)
+    log.info(s"Copied $f to $resources")
   })
 }
