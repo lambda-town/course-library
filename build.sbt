@@ -18,7 +18,7 @@ lazy val root = (project in file("."))
     name := "course-library",
     libraryDependencies ++= Seq(
       "lambda" %% "course-dsl" % "0.2.7",
-      "org.scalatest" %% "scalatest" % "3.0.8" % Test
+      "org.scalatest" %% "scalatest" % "3.1.1" % Test
     ),
     scalacOptions ~= { _.filterNot(Set("-Xlint:missing-interpolator")) },
     compile in Compile := (compile in Compile).dependsOn(bundleExamples).value
@@ -28,7 +28,7 @@ lazy val scalaCodeExamples = (project in file("scala-code-examples"))
   .settings(
     libraryDependencies ++= Seq(
       "lambda" %% "scala-utils" % "0.2.3",
-      "org.scalatest" %% "scalatest" % "3.0.8" % Test
+      "org.scalatest" %% "scalatest" % "3.1.1" % Test
     )
   )
 
