@@ -95,8 +95,9 @@ object $2ExpressionsAndTypes {
         .withDefaultValue(
           """
             |object Main extends App {
+            |  // Make me mutable
             |  val name = "Paul"
-            |  name = John"
+            |  name = "John"
             |
             |  println(name)
             |}
