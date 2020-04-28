@@ -56,7 +56,7 @@ object $1Introduction {
     )
     withWidget (
       scala(widgetId(pageId, 3))
-        .withBaseFile(sourceFileResource("/examples/atasteofscala/intro/PatternMatching.scala"))
+        .withBaseFile(sourceFileResource("/examples/atasteofscala/intro/PatternMatching.sc"))
         .withDefaultValue(textFromResource("/examples/atasteofscala/intro/patternMatchingValue.sc"))
       )
     withWidget mk(

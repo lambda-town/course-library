@@ -21,10 +21,11 @@ object $2ExpressionsAndTypes {
         .withDefaultValue(
           """
             |object Main extends App {
-            |    println("Hello, world")
+            |  println("Hello, world")
             |}
             |""".stripMargin.trim
         )
+        .withBaseFile(sourceFileResource("/examples/atasteofscala/expressions/helloWorld.sc"))
     )
     .withWidget(mk(widgetId(pageId, 3),
       """
@@ -94,19 +95,20 @@ object $2ExpressionsAndTypes {
         .withDefaultValue(
           """
             |object Main extends App {
-            |val name = "Paul"
-            |name = John"
+            |  val name = "Paul"
+            |  name = John"
             |
-            |println(name)
+            |  println(name)
             |}
-            |""".stripMargin.trim
+            |""".stripMargin
         )
+        .withBaseFile(sourceFileResource("/examples/atasteofscala/expressions/valVsVar.sc"))
     )
     .withWidget(mk(widgetId(pageId, 6),
       """
-        |Please keep in mind that immutable bindings (`val`) should be preferred, and mutable variables only
-        |used when necessary. Mutable variables make the code harder to reason about, hence more prone to bugs, and
+        |Mutable variables make the code harder to reason about, hence more prone to bugs, and
         |harder to execute in multi-threaded environment because of race-conditions risks.
+        |
         |Using functional programming, it is possible to write complete applications without
         |using a single mutable variable.
         |""".stripMargin
